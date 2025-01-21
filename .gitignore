@@ -1,0 +1,55 @@
+# Directorios de compilación
+/bin/
+/obj/
+
+# Archivos de usuario de Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de configuración de Visual Studio
+.vs/
+.vscode/
+
+# Paquetes NuGet
+*.nupkg
+# Carpeta de paquetes si está presente
+**/packages/*
+# Exceptuar el archivo de restauración de paquetes
+!**/packages/build/
+!**/packages/repositories.config
+
+# Archivos generados por JetBrains Rider
+.idea/
+*.sln.iml
+
+# Archivos de publicación
+publish/
+
+# Archivos temporales de ASP.NET
+*.AspNetCoreHostingModel
+
+# Archivos de logs
+*.log
+
+# Archivos de configuración de IIS Express
+*.vs/
+*.vscode/
+
+# Archivos de caché de herramientas
+*.cache
+*.lock
+*.lock.json
+project.lock.json
+
+# Archivos de dependencias
+node_modules/
+bower_components/
+
+# Archivos de entorno local
+.env
+.env.*
+
+# Otros archivos y carpetas que pueden ser específicos de tu proyecto
+# Añade aquí cualquier otro archivo o carpeta que desees ignorar
