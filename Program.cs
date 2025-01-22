@@ -10,21 +10,17 @@ namespace PropioApp
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-
+            //"
 
 
             // Configurar AutoUpdater
+            AutoUpdater.ReportErrors = true;
             AutoUpdater.ApplicationExitEvent += AutoUpdater_ApplicationExitEvent;
-            AutoUpdater.Start("https://tu-servidor.com/actualizaciones/update.xml");
+            AutoUpdater.Start("https://raw.githubusercontent.com/hf-sabillon/PropioApp/refs/heads/main/public/update.xml");
 
             // Continuar con el inicio de la aplicación
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
             Application.Run(new PropioTrayForm());
         }
 

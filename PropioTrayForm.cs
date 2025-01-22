@@ -83,7 +83,10 @@ namespace PropioApp
         {
             try
             {
-            
+
+                File.AppendAllText("log.txt",
+                   $"{DateTime.Now}: update process... \n");
+
                 File.AppendAllText(_logPath,
                      $"{DateTime.Now}: ProcessAndLog \n");
 
