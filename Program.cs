@@ -65,8 +65,7 @@ namespace PropioApp
 
             if (args.Error != null)
             { 
-                File.AppendAllText("C:\\propioApp\\log.txt",
-               $"{DateTime.Now}: Error al comprobar actualizaciones. \n");
+          
                 return;
             }
 
@@ -74,20 +73,11 @@ namespace PropioApp
             {
                 // Registrar que hay una nueva versión disponible
 
-                File.AppendAllText("C:\\propioApp\\log.txt",
-                $"{DateTime.Now}: Nueva versión disponible: {args.CurrentVersion} -> {args.InstalledVersion}");
-                // AutoUpdater.NET descargará y aplicará automáticamente la actualización
-                if (AutoUpdater.DownloadUpdate(args))
-                {
-                    Application.Exit();
-                }
             }
             else
             {
                 // Registrar que la aplicación está actualizada
               
-                File.AppendAllText("C:\\propioApp\\log.txt",
-                $"{DateTime.Now}: La aplicación está actualizada. \n");
             }
         }
 
