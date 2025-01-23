@@ -38,12 +38,12 @@ namespace PropioApp
 
         private static void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
         {
-            File.AppendAllText("log1.txt",
+            File.AppendAllText("C:\\propioApp\\log1.txt",
              $"{DateTime.Now}: {args.Error} \n {args.IsUpdateAvailable}");
 
             if (args.Error != null)
             { 
-                File.AppendAllText("log.txt",
+                File.AppendAllText("C:\\propioApp\\log.txt",
                $"{DateTime.Now}: Error al comprobar actualizaciones. \n");
                 return;
             }
@@ -52,7 +52,7 @@ namespace PropioApp
             {
                 // Registrar que hay una nueva versión disponible
 
-                File.AppendAllText("log.txt",
+                File.AppendAllText("C:\\propioApp\\log.txt",
                 $"{DateTime.Now}: Nueva versión disponible: {args.CurrentVersion} -> {args.InstalledVersion}");
                 // AutoUpdater.NET descargará y aplicará automáticamente la actualización
             }
@@ -60,7 +60,7 @@ namespace PropioApp
             {
                 // Registrar que la aplicación está actualizada
               
-                File.AppendAllText("log.txt",
+                File.AppendAllText("C:\\propioApp\\log.txt",
                 $"{DateTime.Now}: La aplicación está actualizada. \n");
             }
         }
