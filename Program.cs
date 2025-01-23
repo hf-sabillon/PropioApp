@@ -1,4 +1,5 @@
 using AutoUpdaterDotNET;
+using Microsoft.VisualBasic.Logging;
 
 namespace PropioApp
 {
@@ -11,12 +12,16 @@ namespace PropioApp
         static void Main()
         {
             //"
+            AutoUpdater.RunUpdateAsAdmin = false;
+            AutoUpdater.ShowRemindLaterButton = false;
+            AutoUpdater.ShowSkipButton = false;
+            AutoUpdater.Mandatory = false;
+            AutoUpdater.ReportErrors = false;
 
-
-            // Configurar AutoUpdater
-            AutoUpdater.ReportErrors = true;
+            AutoUpdater.Start("https://raw.githubusercontent.com/hf-sabillon/distribution/refs/heads/main/main/version.xml");
             AutoUpdater.ApplicationExitEvent += AutoUpdater_ApplicationExitEvent;
-            AutoUpdater.Start("https://raw.githubusercontent.com/hf-sabillon/PropioApp/refs/heads/main/public/update.xml");
+            AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
+           
 
             // Continuar con el inicio de la aplicación
             Application.EnableVisualStyles();
@@ -28,6 +33,36 @@ namespace PropioApp
         {
             // Lógica para reiniciar la aplicación si es necesario
             Application.Exit();
+        }
+
+
+        private static void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
+        {
+            File.AppendAllText("log1.txt",
+             $"{DateTime.Now}: {args.Error} \n {args.IsUpdateAvailable}");
+
+            if (args.Error != null)
+            { 
+                File.AppendAllText("log.txt",
+               $"{DateTime.Now}: Error al comprobar actualizaciones. \n");
+                return;
+            }
+
+            if (args.IsUpdateAvailable)
+            {
+                // Registrar que hay una nueva versión disponible
+
+                File.AppendAllText("log.txt",
+                $"{DateTime.Now}: Nueva versión disponible: {args.CurrentVersion} -> {args.InstalledVersion}");
+                // AutoUpdater.NET descargará y aplicará automáticamente la actualización
+            }
+            else
+            {
+                // Registrar que la aplicación está actualizada
+              
+                File.AppendAllText("log.txt",
+                $"{DateTime.Now}: La aplicación está actualizada. \n");
+            }
         }
 
     }
