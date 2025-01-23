@@ -17,6 +17,13 @@ namespace PropioApp
             AutoUpdater.ShowSkipButton = false;
             AutoUpdater.Mandatory = false;
             AutoUpdater.ReportErrors = false;
+            AutoUpdater.DownloadPath = Application.StartupPath;
+
+            var currentDirectory = new DirectoryInfo(Application.StartupPath);
+            if (currentDirectory.Parent != null)
+            {
+                AutoUpdater.InstallationPath = currentDirectory.Parent.FullName;
+            }
 
             AutoUpdater.ApplicationExitEvent += AutoUpdater_ApplicationExitEvent;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
@@ -70,8 +77,10 @@ namespace PropioApp
                 File.AppendAllText("C:\\propioApp\\log.txt",
                 $"{DateTime.Now}: Nueva versión disponible: {args.CurrentVersion} -> {args.InstalledVersion}");
                 // AutoUpdater.NET descargará y aplicará automáticamente la actualización
-                //AutoUpdater.DownloadUpdate(args);                
-                Application.Exit();
+                if (AutoUpdater.DownloadUpdate(args))
+                {
+                    Application.Exit();
+                }
             }
             else
             {
