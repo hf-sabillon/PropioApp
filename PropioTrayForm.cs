@@ -261,7 +261,7 @@ namespace PropioApp
             try
             {
                 var payload = JsonConvert.SerializeObject(request, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                var uri = new Uri("http://18.214.97.156:10000/propio/api/collect/propio");
+                var uri = new Uri("http://3.219.87.125:10000/propio/api/collect/propio");
                 var content = new StringContent(payload, Encoding.UTF8, "application/json");
 
                 PostRequest(uri, content).Wait();

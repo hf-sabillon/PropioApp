@@ -60,8 +60,7 @@ namespace PropioApp
 
         private static void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
         {
-            File.AppendAllText("C:\\propioApp\\log1.txt",
-             $"{DateTime.Now}: {args.Error} \n {args.IsUpdateAvailable}");
+           
 
             if (args.Error != null)
             { 
