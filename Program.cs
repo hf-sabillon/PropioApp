@@ -55,6 +55,8 @@ namespace PropioApp
                 File.AppendAllText("C:\\propioApp\\log.txt",
                 $"{DateTime.Now}: Nueva versión disponible: {args.CurrentVersion} -> {args.InstalledVersion}");
                 // AutoUpdater.NET descargará y aplicará automáticamente la actualización
+                AutoUpdater.DownloadUpdate(args);                
+                Application.Exit();
             }
             else
             {
