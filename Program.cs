@@ -18,15 +18,30 @@ namespace PropioApp
             AutoUpdater.Mandatory = false;
             AutoUpdater.ReportErrors = false;
 
-            AutoUpdater.Start("https://raw.githubusercontent.com/hf-sabillon/distribution/refs/heads/main/main/version.xml");
             AutoUpdater.ApplicationExitEvent += AutoUpdater_ApplicationExitEvent;
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
-           
 
-            // Continuar con el inicio de la aplicación
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PropioTrayForm());
+            try
+            {
+                AutoUpdater.Start("https://raw.githubusercontent.com/hf-sabillon/distribution/refs/heads/main/main/version.xml");
+
+
+
+                // Continuar con el inicio de la aplicación
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new PropioTrayForm());
+            }
+            catch (Exception ex)
+            {
+               
+            }
+            finally
+            {               
+                
+
+            }
+
         }
 
         private static void AutoUpdater_ApplicationExitEvent()
@@ -55,7 +70,7 @@ namespace PropioApp
                 File.AppendAllText("C:\\propioApp\\log.txt",
                 $"{DateTime.Now}: Nueva versión disponible: {args.CurrentVersion} -> {args.InstalledVersion}");
                 // AutoUpdater.NET descargará y aplicará automáticamente la actualización
-                AutoUpdater.DownloadUpdate(args);                
+                //AutoUpdater.DownloadUpdate(args);                
                 Application.Exit();
             }
             else
