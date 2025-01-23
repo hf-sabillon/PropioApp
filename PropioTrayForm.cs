@@ -83,10 +83,10 @@ namespace PropioApp
         {
             try
             {
-               /*             
+                           
 
                    File.AppendAllText("C:\\propioApp\\log3.txt",
-                     $"{DateTime.Now}: Nuevo Log ProcessAndLog 2 \n");*/
+                     $"{DateTime.Now}: Nuevo Log ProcessAndLog 2.0.0 \n");
 
 
                 File.AppendAllText(_logPath,
